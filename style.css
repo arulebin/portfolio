@@ -2,11 +2,21 @@
     margin:0;
     padding: 0;
     box-sizing: border-box;
-}
-body{
     font-family: 'Lato',sans-serif;
 }
-
+.header{
+    display: flex;
+    align-items: center;
+}
+.header-title{
+    font-size: 40px;
+    font-weight: 700;
+    color: #272341;
+}
+.header,.about, .skills, .projects{
+    min-height: 100vh;
+    height:100vh;
+}
 .lang{
     height:50px;
     width:50px;

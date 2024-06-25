@@ -20,19 +20,26 @@
     />
   </head>
   <body>
-    <div class="container">
+    <div>
       <div class="header">
-        <h1>Hi, my name is Ebin A</h1>
-        <h1>I'm the Developer</h1>
-        <button
-          type="button"
-          class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold"
-        >
-          Get in touch
-        </button>
+        <div class="container">
+            <h1 class="header-title">Hi, my name is Ebin A <br>
+                I'm a Developer</h1>
+            <a href="#about">
+                <button
+            type="button"
+            class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold"
+            >
+            Get in touch
+            </button>
+            </a>
+            
+        </div>
+        
       </div>
-      <div class="about container">
+      <div id="about" class="about container">
         <h2 class="text-center pb-2 border-bottom fw-bold">ABOUT ME</h2>
+        <img class="" src="..." alt="">
         <p class="fs-5 mb-4">
           I am pursuing my Bachelor of Engineering in Computer Science at St.
           Xavier's Catholic College of Engineering. With a solid foundation in
@@ -53,15 +60,12 @@
           opportunities for growth. My goal is to contribute to innovative
           projects and be part of a team that drives technological advancements.
         </p>
-        <button
-          type="button"
-          class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold"
-        >
-          Resume
-        </button>
+        <div class="d-flex justify-content-center">
+            <a href=""><button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">Resume</button></a>
+        </div>
       </div>
       <div class="skills">
-        <div class="container px-4 py-5" id="icon-grid">
+        <div class="container px-4 " id="icon-grid">
           <h2 class="pb-2 border-bottom text-center fw-bold">Skills</h2>
           <p class="fs-5 mb-4 text-center">
             I love to learn new things and experiment with new technologies.
@@ -114,9 +118,9 @@
           </div>
         </div>
       </div>
-      <div class="projects">
+      <div class="projects container">
         <h2 class="pb-2 border-bottom text-center fw-bold">Projects</h2>
-        <div class="album py-5 bg-body-tertiary">
+        <div class="album py-2 bg-body-tertiary">
             <div class="container">
               <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div class="col">
@@ -126,7 +130,7 @@
                         <h5 class="text-center mb-2 card-title">Portfolio</h5>
                         <p class="card-text">Coming soon!!!</p>
                         <div class="d-flex justify-content-center align-items-center">
-                          <button type="button" class="btn btn-sm btn-outline-dark">GitHub</button>
+                            <a href="https://github.com/arulebin/spotify-login-clone"><button type="button" class="btn btn-sm btn-outline-dark">GitHub</button></a>
                         </div>
                        </div>
                      </div>
