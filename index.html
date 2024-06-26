@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div class="wrapper">
+    <div class="wrapper bg-body-tertiary">
       <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary pb-0">
         <div class="container-fluid">
           <a class="navbar-brand" href="#"><span class="fw-bold">&lt;Ebin A/&gt;</span></a>
@@ -45,21 +45,25 @@
           </div>
         </div>
       </nav>
-      <div class="hero  d-flex justify-content-center flex-column">
-        <div class="container" >
-            <h1 class="header-title">Hi, my name is Ebin A <br>
-                I'm a Developer</h1>
-            <a href="#about">
+      <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+          <div class="col-10 col-sm-8 col-lg-6">
+            <img src="./assets/images/home.png" class="d-block mx-lg-auto img-fluid header-img" alt="laptop" width="700" height="500" loading="lazy">
+          </div>
+          <div class="col-lg-6">
+            <h1 class="display-5 fw-bold header-title lh-1 mb-3">Hi, my name is Ebin A</h1>
+            <h2 class="header-title">I'm a Developer</h2>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+              <a href="#about">
                 <button
-            type="button"
-            class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold"
-            >
-            Get in touch
-            </button>
-            </a>
-            
+                type="button"
+                  class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">
+                  Get in touch
+                </button>
+              </a>
+            </div>
+          </div>
         </div>
-        
       </div>
       <div id="about" class="about container">
         <h2 class="text-center pb-2 border-bottom fw-bold">ABOUT ME</h2>
@@ -69,16 +73,16 @@
           Xavier's Catholic College of Engineering. With a solid foundation in
           programming and a passion for web development, I am constantly
           exploring new technologies and honing my skills.
-          <br />🌐 Web Development Enthusiast<br />
+          <br /><span class="fw-bold">🌐 Web Development Enthusiast</span><br />
           I am passionate about web development and actively learning to build
           responsive and user-friendly websites.
           <br />
-          🔍 Problem Solver<br />
+          <span class="fw-bold">🔍 Problem Solver</span><br />
           I enjoy tackling complex problems and improving my coding skills
           through data structures and algorithms. I frequently challenge myself
           with LeetCode questions to enhance my problem-solving abilities and
           stay sharp in competitive programming.
-          <br />🚀 Career Aspirations<br />
+          <br/><span class="fw-bold">🚀 Career Aspirations</span><br />
           I am eager to apply my skills in a professional setting and am
           actively seeking internships that will provide hands-on experience and
           opportunities for growth. My goal is to contribute to innovative
@@ -149,13 +153,19 @@
               <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div class="col">
                     <div class="card shadow-sm">
-                      <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                      <img class="bd-placeholder-img card-img-top" src="./assets/projects/portfolio.png" alt="My portfolio">
                       <div class="card-body">
                         <h5 class="text-center mb-2 card-title">Portfolio</h5>
                         <p class="card-text">Coming soon!!!</p>
                         <div class="d-flex justify-content-center align-items-center">
-                            <a href="https://github.com/arulebin/spotify-login-clone"><button type="button" class="btn btn-sm btn-outline-dark">GitHub</button></a>
+                            <a href="https://github.com/arulebin/portfolio"><button type="button" class="btn btn-sm btn-outline-dark">GitHub</button></a>
                         </div>
+                        <hr>
+                      <div class="text-center">
+                        <span class="badge text-bg-dark rounded-pill">HTML</span>
+                        <span class="badge text-bg-dark rounded-pill">CSS</span>
+                        <span class="badge text-bg-dark rounded-pill">BootStrap</span>
+                      </div>
                        </div>
                      </div>
                    </div>
