@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 .header-title{
     color: #272341;
 }
@@ -29,7 +28,16 @@
 .nav-item {
     margin-right: 30px;
 }
-
+.btn.outline {
+    background: none;
+    border: 2px solid #272341;
+    color:#272341;
+}
+.btn.outline:hover,.btn.outline:active,.btn.outline:focus {
+    background-color: #272341;
+    color:white;
+    border: 2px solid #272341;
+}
 .lang{
     height:50px;
     width:50px;
