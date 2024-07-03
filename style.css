@@ -3,6 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+html {
+  scroll-behavior: smooth;
+}
 .header-title {
   color: #272341;
 }
@@ -32,6 +35,7 @@
   background: none;
   border: 2px solid #272341;
   color: #272341;
+  width: 10rem;
 }
 .btn.outline:hover,
 .btn.outline:active,
