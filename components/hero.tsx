@@ -10,7 +10,7 @@ import { HeroArt } from "./hero-art";
 import { useReducedMotionSafe } from "@/lib/use-reduced-motion";
 
 const RESUME_URL =
-  "https://drive.google.com/file/d/1mOHzj-tNTGnsR3LEzAHmNwaAha-w4ZuK/view?usp=sharing";
+  "https://drive.google.com/file/d/1ykiocvGePFocspE3D4QsIhcryqOTJOa1/view?usp=sharing";
 
 export function Hero() {
   const reduce = useReducedMotionSafe();
