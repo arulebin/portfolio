@@ -1,0 +1,450 @@
+@import "tailwindcss";
+
+/* Class-based dark mode driven by next-themes (adds `.dark` on <html>) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #faf9f7;
+  --foreground: #1c1917;
+  --muted: #6f6963;
+  --border: #e7e3df;
+  --card: #ffffff;
+  --accent: #c2410c;
+  --accent-soft: #f5e7df;
+  /* secondary accent for gradient depth (warm amber) */
+  --accent-2: #d97706;
+  /* rgb channels for building rgba() glows/tints */
+  --accent-rgb: 194 65 12;
+  --foreground-rgb: 28 25 23;
+  --background-rgb: 250 249 247;
+  /* ambient glow tint used behind the hero */
+  --glow: rgba(194, 65, 12, 0.14);
+}
+
+.dark {
+  --background: #0c0a09;
+  --foreground: #faf9f7;
+  --muted: #a39c95;
+  --border: #2a2624;
+  --card: #161311;
+  --accent: #f0703f;
+  --accent-soft: #2a1a12;
+  --accent-2: #fbbf24;
+  --accent-rgb: 240 112 63;
+  --foreground-rgb: 250 249 247;
+  --background-rgb: 12 10 9;
+  --glow: rgba(240, 112, 63, 0.18);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-card: var(--card);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-soft: var(--accent-soft);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  /* choreography tokens — one rhythm for the whole site */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-aurora: aurora 18s ease-in-out infinite;
+  --animate-float-slow: float 7s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.4s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes aurora {
+  0%,
+  100% {
+    transform: translate3d(-4%, -2%, 0) scale(1);
+    opacity: 0.9;
+  }
+  33% {
+    transform: translate3d(6%, 3%, 0) scale(1.12);
+    opacity: 1;
+  }
+  66% {
+    transform: translate3d(-2%, 5%, 0) scale(1.05);
+    opacity: 0.85;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  70%,
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  /* stop iOS/Android over-zoom oddities while keeping user zoom enabled */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* `clip`, not `hidden`: hidden makes body a scroll container, which can
+     break `position: sticky` descendants (story mode pins its stage that way). */
+  overflow-x: clip;
+}
+
+::selection {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+/* Visible, on-brand focus ring for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ── Custom scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--muted) 45%, transparent);
+  border-radius: 999px;
+  border: 3px solid var(--background);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+html {
+  scrollbar-color: color-mix(in oklab, var(--muted) 45%, transparent) transparent;
+}
+
+/* ── Utility layers ───────────────────────────────────────────── */
+
+/* Gradient text used for statement words */
+.text-gradient {
+  background-image: linear-gradient(
+    100deg,
+    var(--accent) 0%,
+    var(--accent-2) 55%,
+    var(--accent) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Animated shimmering gradient text (used sparingly) */
+.text-gradient-animate {
+  background-image: linear-gradient(
+    100deg,
+    var(--accent) 0%,
+    var(--accent-2) 50%,
+    var(--accent) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 5s linear infinite;
+}
+
+/* Fine film grain overlay — sits above ambient gradients for texture */
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Subtle grid used behind sections */
+.bg-grid {
+  background-image: linear-gradient(
+      to right,
+      color-mix(in oklab, var(--border) 65%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--border) 65%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 64px 64px;
+}
+
+/* Frosted card surface */
+.glass {
+  background-color: color-mix(in oklab, var(--card) 72%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Marquee track — duplicate children inside for a seamless loop */
+.marquee-track {
+  animation: var(--animate-marquee);
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Animated conic border ring for feature surfaces */
+.ring-glow {
+  position: relative;
+}
+.ring-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--angle, 0deg),
+    transparent 55%,
+    var(--accent) 75%,
+    var(--accent-2) 85%,
+    transparent 100%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.ring-glow:hover::before {
+  opacity: 1;
+  animation: spin-angle 4s linear infinite;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes spin-angle {
+  to {
+    --angle: 360deg;
+  }
+}
+
+/* ── Motion preferences ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ── Story mode ───────────────────────────────────────────────── */
+
+/* Native <dialog> gives us the focus trap, inertness, Escape and focus
+   restoration; all it needs from us is an entrance. */
+.story-dialog[open] {
+  animation: dialog-in 0.34s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.story-dialog[open]::backdrop {
+  animation: backdrop-in 0.34s ease-out;
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+}
+
+@keyframes backdrop-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* The stage owns the viewport while it is pinned. */
+.story-stage {
+  contain: paint;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-dialog[open],
+  .story-dialog[open]::backdrop {
+    animation: none;
+  }
+}
+
+/* ── Story mode: ambient life ─────────────────────────────────── */
+/* CSS keyframes rather than JS animation: dozens of particles run on the
+   compositor and cost the main thread nothing, which it needs for the
+   character's physics loop. */
+
+.story-float {
+  animation-name: story-float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+.story-rise {
+  animation-name: story-rise;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+.story-wander {
+  animation-name: story-wander;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+.story-drift {
+  animation-name: story-drift;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+.story-bird {
+  animation-name: story-fly;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+.story-wing {
+  animation: story-flap 0.42s ease-in-out infinite;
+  transform-origin: 20px 10px;
+  transform-box: view-box;
+}
+
+@keyframes story-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(1.2vw, -3.5vh, 0); }
+}
+
+@keyframes story-rise {
+  0% { transform: translate3d(0, 0, 0); opacity: 0; }
+  12% { opacity: 1; }
+  85% { opacity: 0.7; }
+  100% { transform: translate3d(1.6vw, -46vh, 0); opacity: 0; }
+}
+
+@keyframes story-wander {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.25; }
+  25% { transform: translate3d(2.4vw, -2vh, 0); opacity: 1; }
+  50% { transform: translate3d(0.6vw, -4.5vh, 0); opacity: 0.4; }
+  75% { transform: translate3d(-1.8vw, -1.6vh, 0); opacity: 0.95; }
+}
+
+@keyframes story-drift {
+  from { transform: translate3d(-30vw, 0, 0); }
+  to { transform: translate3d(130vw, 0, 0); }
+}
+
+@keyframes story-fly {
+  from { transform: translate3d(-12vw, 0, 0); }
+  to { transform: translate3d(115vw, -6vh, 0); }
+}
+
+@keyframes story-flap {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.35); }
+}
+
+/* The gate shimmer at the end of a room. */
+@keyframes story-barrier {
+  0%, 100% { opacity: 0.35; transform: scaleX(1); }
+  50% { opacity: 0.7; transform: scaleX(1.35); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-float,
+  .story-rise,
+  .story-wander,
+  .story-drift,
+  .story-bird,
+  .story-wing {
+    animation: none !important;
+  }
+}
+
+/* Dust kicked up on each footfall. Restarted imperatively from the avatar's
+   animation loop, so it costs no React renders. */
+.story-puff {
+  animation: story-puff 0.42s ease-out;
+}
+
+@keyframes story-puff {
+  0% { opacity: 0.5; transform: translate(-50%, 0) scale(0.4); }
+  100% { opacity: 0; transform: translate(-50%, -14px) scale(1.9); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-puff { animation: none !important; }
+}
+
+/* Room name card: announces the chapter, then gets out of the way. Keyed on the
+   chapter in React, so re-entering a room replays it with no timer to manage. */
+.story-plate {
+  animation: story-plate 6.5s ease forwards;
+}
+
+@keyframes story-plate {
+  0% { opacity: 0; transform: translateY(12px); }
+  10% { opacity: 1; transform: translateY(0); }
+  72% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-8px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-plate { animation: none; opacity: 1; }
+}
